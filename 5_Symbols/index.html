@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>💻 5. Symbols — Memory Palace</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+<div class="page-wrapper">
+  <script>window.SITE_ROOT='../';</script>
+  <script>window.CURRENT_SECTION='5';</script>
+  <script src="../assets/menu.js"></script>
+
+  <main class="main-content">
+    <div class="hero">
+      <span class="hero-emoji">💻</span>
+      <h1>5. Symbols</h1>
+      <p class="hero-sub">Core source code. Where the formula becomes real.</p>
+    </div>
+
+    <div class="info-box">
+      ⚡ This section contains <strong>working, production-ready code</strong>. Every script here
+      was derived from a formula in <code>4_Formula/</code>. AI agents (Claude, Kilocode) generate
+      these from the formula documents.
+    </div>
+
+    <h2>📦 Code Modules</h2>
+    <div class="card-grid">
+      <a href="../markdown_renderer.html?file=5_Symbols/prism_integration.md" class="card">
+        <div class="card-icon">🎨</div>
+        <div class="card-title">PrismJS Integration</div>
+        <div class="card-desc">Syntax highlighting for all code blocks</div>
+      </a>
+      <div class="card" style="opacity:0.6;cursor:default;">
+        <div class="card-icon">🎮</div>
+        <div class="card-title">Roblox Luau Scripts</div>
+        <div class="card-desc">Memory loci interaction scripts — coming soon</div>
+      </div>
+      <div class="card" style="opacity:0.6;cursor:default;">
+        <div class="card-icon">🐍</div>
+        <div class="card-title">Embedding Pipeline</div>
+        <div class="card-desc">Python: markdown → Ollama → Qdrant — coming soon</div>
+      </div>
+      <div class="card" style="opacity:0.6;cursor:default;">
+        <div class="card-icon">🔍</div>
+        <div class="card-title">Semantic Search</div>
+        <div class="card-desc">Query Qdrant from Roblox — coming soon</div>
+      </div>
+    </div>
+
+    <h2>🎨 PrismJS — Syntax Highlighting</h2>
+    <p>All code blocks across the Memory Palace site use PrismJS for syntax highlighting.</p>
+    <pre><code class="language-html">&lt;!-- Include PrismJS in any page --&gt;
+&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"&gt;
+&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"&gt;&lt;/script&gt;
+&lt;!-- Language-specific components loaded on demand --&gt;
+&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"&gt;&lt;/script&gt;</code></pre>
+
+    <h2>🎮 Roblox Luau — Memory Locus Script</h2>
+    <pre><code class="language-lua">-- MemoryLocus.lua
+-- Place this as a Script inside a Part in Roblox Studio
+-- The part becomes a "locus" — a knowledge anchor in the memory palace
+
+local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
+
+local locus = script.Parent
+local concept = locus:GetAttribute("Concept") or locus.Name
+local detail  = locus:GetAttribute("Detail") or "No detail set"
+local tags    = locus:GetAttribute("Tags") or ""
+
+-- Proximity prompt (Roblox built-in)
+local prompt = Instance.new("ProximityPrompt")
+prompt.ActionText = "Learn"
+prompt.ObjectText = concept
+prompt.MaxActivationDistance = 8
+prompt.Parent = locus
+
+prompt.Triggered:Connect(function(player)
+  -- Fire RemoteEvent to show GUI on client
+  local remotes = game.ReplicatedStorage:FindFirstChild("MemoryPalaceEvents")
+  if remotes then
+    remotes.ShowLocus:FireClient(player, {
+      concept = concept,
+      detail  = detail,
+      tags    = tags,
+    })
+  end
+end)</code></pre>
+
+    <h2>🐍 Python — Embedding Pipeline</h2>
+    <pre><code class="language-python">"""
+embed_documents.py
+Reads all markdown files and embeds them into Qdrant via Ollama.
+Run: python embed_documents.py
+"""
+import os, json, pathlib, requests
+
+OLLAMA_URL  = os.getenv("OLLAMA_HOST", "http://localhost:11434")
+QDRANT_URL  = os.getenv("QDRANT_HOST", "http://localhost:6333")
+MODEL       = os.getenv("OLLAMA_EMBED_MODEL", "nomic-embed-text")
+COLLECTION  = os.getenv("QDRANT_COLLECTION", "memory_palace")
+
+def embed(text: str) -> list[float]:
+    r = requests.post(f"{OLLAMA_URL}/api/embeddings",
+                      json={"model": MODEL, "prompt": text})
+    r.raise_for_status()
+    return r.json()["embedding"]
+
+def upsert(point_id: int, vector: list[float], payload: dict):
+    r = requests.put(f"{QDRANT_URL}/collections/{COLLECTION}/points",
+                     json={"points": [{"id": point_id, "vector": vector, "payload": payload}]})
+    r.raise_for_status()
+
+def main():
+    md_files = list(pathlib.Path(".").rglob("*.md"))
+    for i, path in enumerate(md_files):
+        if "obsolete" in str(path): continue
+        text = path.read_text(encoding="utf-8")
+        print(f"Embedding {path} ...")
+        vector = embed(text[:4096])  # nomic-embed-text max context
+        upsert(i, vector, {"file": str(path), "section": path.parts[0]})
+    print(f"✅ Embedded {len(md_files)} documents into Qdrant")
+
+if __name__ == "__main__":
+    main()</code></pre>
+
+    <h2>🔗 Navigation</h2>
+    <ul>
+      <li><a href="../4_Formula/index.html">← 4. Formula</a></li>
+      <li><a href="../6_Semblance/index.html">6. Semblance →</a></li>
+    </ul>
+
+    <footer class="site-footer">
+      <div class="social-links">
+        <a href="https://github.com/rifaterdemsahin/memory-palace" target="_blank" rel="noopener">🐙</a>
+        <a href="https://www.linkedin.com/in/rifaterdemsahin/" target="_blank" rel="noopener">💼</a>
+        <a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" rel="noopener">🎥</a>
+      </div>
+      <p>🏛️ Memory Palace · <a href="../index.html">← Home</a></p>
+    </footer>
+  </main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+</html>

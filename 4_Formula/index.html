@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📐 4. Formula — Memory Palace</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+<div class="page-wrapper">
+  <script>window.SITE_ROOT='../';</script>
+  <script>window.CURRENT_SECTION='4';</script>
+  <script src="../assets/menu.js"></script>
+
+  <main class="main-content">
+    <div class="hero">
+      <span class="hero-emoji">📐</span>
+      <h1>4. Formula</h1>
+      <p class="hero-sub">The recipe. Steps and guides built from research and best practices.</p>
+    </div>
+
+    <div class="info-box">
+      💡 Formulas are the <strong>bridge</strong> between environment understanding and working code.
+      Each formula is a step-by-step guide that AI agents can follow to produce <code>5_Symbols/</code> code.
+    </div>
+
+    <h2>📚 Formulas</h2>
+    <div class="card-grid">
+      <a href="../markdown_renderer.html?file=4_Formula/formula_roblox_versus_sketchup.md" class="card">
+        <div class="card-icon">🎮</div>
+        <div class="card-title">Roblox vs SketchUp</div>
+        <div class="card-desc">Comparison for building memory palaces in 3D</div>
+      </a>
+      <a href="../markdown_renderer.html?file=4_Formula/qdrant_ollama_setup.md" class="card">
+        <div class="card-icon">🗄️</div>
+        <div class="card-title">Qdrant + Ollama Setup</div>
+        <div class="card-desc">Docker setup for vector DB + local embeddings</div>
+      </a>
+    </div>
+
+    <h2>⚡ Quick Reference — Qdrant + Ollama</h2>
+    <pre><code class="language-bash"># Pull embedding model
+ollama pull nomic-embed-text
+
+# Start containers
+docker compose up -d
+
+# Check Qdrant health
+curl http://localhost:6333/healthz
+
+# Create collection (768 dims for nomic-embed-text)
+curl -X PUT http://localhost:6333/collections/memory_palace \
+  -H 'Content-Type: application/json' \
+  -d '{"vectors": {"size": 768, "distance": "Cosine"}}'
+
+# Embed a document
+curl http://localhost:11434/api/embeddings \
+  -d '{"model":"nomic-embed-text","prompt":"Your text here"}'</code></pre>
+
+    <h2>🎮 Quick Reference — Roblox Luau</h2>
+    <pre><code class="language-lua">-- Basic memory locus script in Roblox Studio
+local locus = script.Parent
+local info = locus:WaitForChild("InfoLabel")
+
+locus.Touched:Connect(function(part)
+  local player = game.Players:GetPlayerFromCharacter(part.Parent)
+  if player then
+    info.Text = "💡 " .. locus.Name .. ": Concept description here"
+    info.Visible = true
+    task.delay(5, function() info.Visible = false end)
+  end
+end)</code></pre>
+
+    <h2>🔗 Navigation</h2>
+    <ul>
+      <li><a href="../3_Simulation/index.html">← 3. Simulation</a></li>
+      <li><a href="../5_Symbols/index.html">5. Symbols →</a></li>
+    </ul>
+
+    <footer class="site-footer">
+      <div class="social-links">
+        <a href="https://github.com/rifaterdemsahin/memory-palace" target="_blank" rel="noopener">🐙</a>
+        <a href="https://www.linkedin.com/in/rifaterdemsahin/" target="_blank" rel="noopener">💼</a>
+        <a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" rel="noopener">🎥</a>
+      </div>
+      <p>🏛️ Memory Palace · <a href="../index.html">← Home</a></p>
+    </footer>
+  </main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-lua.min.js"></script>
+</body>
+</html>

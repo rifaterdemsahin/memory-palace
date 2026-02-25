@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://rifaterdemsahin.github.io/memory-palace/sitemap.xml
+
+# Don't index environment files
+Disallow: /.env
+Disallow: /obsolete/

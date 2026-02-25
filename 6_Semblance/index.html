@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🔍 6. Semblance — Memory Palace</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="page-wrapper">
+  <script>window.SITE_ROOT='../';</script>
+  <script>window.CURRENT_SECTION='6';</script>
+  <script src="../assets/menu.js"></script>
+
+  <main class="main-content">
+    <div class="hero">
+      <span class="hero-emoji">🔍</span>
+      <h1>6. Semblance</h1>
+      <p class="hero-sub">Errors and near-misses. The gap between simulation and reality.</p>
+    </div>
+
+    <div class="info-box warn">
+      ⚠️ Log <strong>every</strong> error here — even small ones. The pattern of errors reveals the gap between
+      your mental model (simulation) and the actual system (reality). This is where learning happens.
+    </div>
+
+    <h2>📋 Error Log</h2>
+    <a href="../markdown_renderer.html?file=6_Semblance/error_log.md" class="card" style="display:block;max-width:400px;">
+      <div class="card-icon">📋</div>
+      <div class="card-title">Full Error Log</div>
+      <div class="card-desc">All logged errors, causes, fixes, and workarounds</div>
+    </a>
+
+    <h2>🐛 Common Issues</h2>
+    <table>
+      <thead><tr><th>Error</th><th>Cause</th><th>Fix</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Qdrant collection not found</td>
+          <td>Collection not created before inserting</td>
+          <td>Run <code>PUT /collections/memory_palace</code> first</td>
+          <td><span class="badge green">Fixed</span></td>
+        </tr>
+        <tr>
+          <td>Ollama model not found</td>
+          <td>Model not pulled</td>
+          <td><code>ollama pull nomic-embed-text</code></td>
+          <td><span class="badge green">Fixed</span></td>
+        </tr>
+        <tr>
+          <td>CORS error on GitHub Pages</td>
+          <td>Fetching markdown files cross-origin</td>
+          <td>All files must be in same GitHub Pages repo</td>
+          <td><span class="badge green">Fixed</span></td>
+        </tr>
+        <tr>
+          <td>Menu not showing on mobile</td>
+          <td>nav-sidebar CSS</td>
+          <td>Use hamburger toggle, overlay closes nav</td>
+          <td><span class="badge green">Fixed</span></td>
+        </tr>
+        <tr>
+          <td>Roblox Studio — script not running</td>
+          <td>Script placed in wrong service</td>
+          <td>LocalScript goes in StarterPlayerScripts; Script in ServerScriptService</td>
+          <td><span class="badge green">Fixed</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>🔗 Navigation</h2>
+    <ul>
+      <li><a href="../5_Symbols/index.html">← 5. Symbols</a></li>
+      <li><a href="../7_Testing_Known/index.html">7. Testing Known →</a></li>
+    </ul>
+
+    <footer class="site-footer">
+      <div class="social-links">
+        <a href="https://github.com/rifaterdemsahin/memory-palace" target="_blank" rel="noopener">🐙</a>
+        <a href="https://www.linkedin.com/in/rifaterdemsahin/" target="_blank" rel="noopener">💼</a>
+        <a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" rel="noopener">🎥</a>
+      </div>
+      <p>🏛️ Memory Palace · <a href="../index.html">← Home</a></p>
+    </footer>
+  </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌍 2. Environment — Memory Palace</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="page-wrapper">
+  <script>window.SITE_ROOT='../';</script>
+  <script>window.CURRENT_SECTION='2';</script>
+  <script src="../assets/menu.js"></script>
+
+  <main class="main-content">
+    <div class="hero">
+      <span class="hero-emoji">🌍</span>
+      <h1>2. Environment</h1>
+      <p class="hero-sub">Read the landscape. Context, roadmap, use cases, and clients.</p>
+    </div>
+
+    <!-- Clients Section -->
+    <h2>🖥️ Clients &amp; Platforms</h2>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🪟</div>
+        <div class="card-title">Windows Client</div>
+        <div class="card-desc">Roblox Studio · Ollama Desktop · Docker Desktop · VS Code</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🍎</div>
+        <div class="card-title">Mac Client</div>
+        <div class="card-desc">Roblox Studio · Ollama.app · Docker Desktop · VS Code</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🤖</div>
+        <div class="card-title">AI Clients</div>
+        <div class="card-desc">Claude Code · Kilocode · Cursor · Continue.dev</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🐳</div>
+        <div class="card-title">Docker / Server</div>
+        <div class="card-desc">Qdrant container · Ollama container · Python scripts</div>
+      </div>
+    </div>
+
+    <h3>🪟 Windows Setup</h3>
+    <ul>
+      <li>Install <strong>Roblox Studio</strong> from <a href="https://www.roblox.com/create" target="_blank">roblox.com/create</a></li>
+      <li>Install <strong>Docker Desktop for Windows</strong> (WSL2 backend recommended)</li>
+      <li>Install <strong>Ollama</strong> from <a href="https://ollama.ai" target="_blank">ollama.ai</a> — runs as a tray app</li>
+      <li>Install <strong>VS Code</strong> + extensions: Luau LSP, Python, Docker, Claude Code CLI</li>
+      <li>Run <code>ollama pull nomic-embed-text</code> in PowerShell</li>
+    </ul>
+
+    <h3>🍎 Mac Setup</h3>
+    <ul>
+      <li>Install <strong>Roblox Studio</strong> from the Mac App Store or roblox.com/create</li>
+      <li>Install <strong>Docker Desktop for Mac</strong> (Apple Silicon or Intel)</li>
+      <li>Install <strong>Ollama.app</strong> — drag to Applications, it lives in the menu bar</li>
+      <li>Install <strong>VS Code</strong> + same extensions as Windows</li>
+      <li>Run <code>ollama pull nomic-embed-text</code> in Terminal</li>
+      <li>Install Claude Code CLI: <code>npm install -g @anthropic-ai/claude-code</code></li>
+    </ul>
+
+    <h3>🤖 AI Client Setup</h3>
+    <table>
+      <thead><tr><th>Client</th><th>Install</th><th>Config File</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>🧠 Claude Code</td><td><code>npm i -g @anthropic-ai/claude-code</code></td><td><code>claude.md</code></td><td>Set ANTHROPIC_API_KEY in .env</td></tr>
+        <tr><td>🔧 Kilocode</td><td>VS Code extension</td><td><code>kilocode.md</code></td><td>Reads kilocode.md for rules</td></tr>
+        <tr><td>🖱️ Cursor</td><td>cursor.sh download</td><td><code>.cursorrules</code></td><td>Point to aigent.md</td></tr>
+        <tr><td>⚡ Continue.dev</td><td>VS Code extension</td><td><code>.continue/config.json</code></td><td>Use Ollama as local provider</td></tr>
+      </tbody>
+    </table>
+
+    <h2>🗺️ Roadmap</h2>
+    <ul>
+      <li>✅ <strong>Phase 0</strong> — Project structure + GitHub Pages deployment</li>
+      <li>🔄 <strong>Phase 1</strong> — Qdrant + Ollama running in Docker</li>
+      <li>📅 <strong>Phase 2</strong> — First Roblox memory palace room built</li>
+      <li>📅 <strong>Phase 3</strong> — Embedding pipeline: markdown → Qdrant</li>
+      <li>📅 <strong>Phase 4</strong> — Semantic search from Roblox Studio</li>
+      <li>📅 <strong>Phase 5</strong> — AI agent auto-generates Luau from formulas</li>
+      <li>📅 <strong>Phase 6</strong> — YouTube walkthrough published</li>
+    </ul>
+
+    <h2>🔗 Related Documents</h2>
+    <ul>
+      <li>📖 <a href="../markdown_renderer.html?file=2_Environment/clients.md">Detailed Clients Guide</a></li>
+      <li>📖 <a href="../markdown_renderer.html?file=2_Environment/roadmap.md">Full Roadmap</a></li>
+      <li>📐 <a href="../markdown_renderer.html?file=4_Formula/qdrant_ollama_setup.md">Qdrant + Ollama Setup</a></li>
+    </ul>
+
+    <footer class="site-footer">
+      <div class="social-links">
+        <a href="https://github.com/rifaterdemsahin/memory-palace" target="_blank" rel="noopener">🐙</a>
+        <a href="https://www.linkedin.com/in/rifaterdemsahin/" target="_blank" rel="noopener">💼</a>
+        <a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" rel="noopener">🎥</a>
+      </div>
+      <p>🏛️ Memory Palace · <a href="../1_Real_Unknown/index.html">← 1. Real Unknown</a> · <a href="../3_Simulation/index.html">3. Simulation →</a></p>
+    </footer>
+  </main>
+</div>
+</body>
+</html>

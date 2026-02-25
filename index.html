@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Memory Palace — Trigger self-learning using Roblox Studio and AI agents. A structured knowledge journey from unknown problem to proven solution.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="🏛️ Memory Palace">
+  <meta property="og:description" content="Self-learning system using Roblox Studio and AI agents">
+  <meta property="og:image" content="assets/og-image.png">
+  <title>🏛️ Memory Palace — Self-Learning System</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <!-- PrismJS for syntax highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+<div class="page-wrapper">
+  <script>window.SITE_ROOT='./';</script>
+  <script>window.CURRENT_SECTION='home';</script>
+  <script src="assets/menu.js"></script>
+
+  <main class="main-content">
+    <!-- Hero -->
+    <div class="hero">
+      <span class="hero-emoji">🏛️</span>
+      <h1>Memory Palace</h1>
+      <p class="hero-sub">
+        Trigger self-learning using <strong>Roblox Studio</strong> &amp; <strong>AI Agents</strong> 🤖<br>
+        From unknown problem → understood solution → proven result
+      </p>
+      <div style="margin-top:1.25rem; display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+        <a href="https://github.com/rifaterdemsahin/memory-palace" target="_blank" rel="noopener"
+           style="background:rgba(255,255,255,0.2);color:white;padding:0.5rem 1.1rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.9rem;">
+          🐙 GitHub Repo
+        </a>
+        <a href="https://www.linkedin.com/in/rifaterdemsahin/" target="_blank" rel="noopener"
+           style="background:rgba(255,255,255,0.2);color:white;padding:0.5rem 1.1rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.9rem;">
+          💼 LinkedIn
+        </a>
+        <a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" rel="noopener"
+           style="background:rgba(255,255,255,0.2);color:white;padding:0.5rem 1.1rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.9rem;">
+          🎥 YouTube
+        </a>
+      </div>
+    </div>
+
+    <!-- What is this? -->
+    <h2>🎯 What is the Memory Palace?</h2>
+    <p>
+      A structured, living system for <strong>self-directed learning</strong>. You start with something you
+      <em>don't understand</em> and walk through 7 stages until you have working code, proven results,
+      and a shareable knowledge artefact — all anchored in memorable 3D spaces built in Roblox Studio.
+    </p>
+    <p>
+      AI agents (via <strong>Ollama + Qdrant</strong>) help generate, search, and embed knowledge so
+      you can query your own palace semantically. 🧠
+    </p>
+
+    <!-- Journey Cards -->
+    <h2>🗺️ The Journey</h2>
+    <div class="card-grid">
+      <a href="1_Real_Unknown/index.html" class="card">
+        <div class="card-icon">❓</div>
+        <div class="card-title">1. Real Unknown</div>
+        <div class="card-desc">OKRs, goals, the question you can't yet answer</div>
+      </a>
+      <a href="2_Environment/index.html" class="card">
+        <div class="card-icon">🌍</div>
+        <div class="card-title">2. Environment</div>
+        <div class="card-desc">Roadmap, use cases, clients, constraints</div>
+      </a>
+      <a href="3_Simulation/index.html" class="card">
+        <div class="card-icon">🎨</div>
+        <div class="card-title">3. Simulation</div>
+        <div class="card-desc">UI mockups, examples, visual prototypes</div>
+      </a>
+      <a href="4_Formula/index.html" class="card">
+        <div class="card-icon">📐</div>
+        <div class="card-title">4. Formula</div>
+        <div class="card-desc">Step-by-step recipes and guides</div>
+      </a>
+      <a href="5_Symbols/index.html" class="card">
+        <div class="card-icon">💻</div>
+        <div class="card-title">5. Symbols</div>
+        <div class="card-desc">Core source code — the formula made real</div>
+      </a>
+      <a href="6_Semblance/index.html" class="card">
+        <div class="card-icon">🔍</div>
+        <div class="card-title">6. Semblance</div>
+        <div class="card-desc">Errors, near-misses, workarounds, fixes</div>
+      </a>
+      <a href="7_Testing_Known/index.html" class="card">
+        <div class="card-icon">✅</div>
+        <div class="card-title">7. Testing Known</div>
+        <div class="card-desc">Validate against original objectives</div>
+      </a>
+    </div>
+
+    <!-- Tools used -->
+    <h2>🛠️ Tech Stack</h2>
+    <div class="flex-wrap">
+      <span class="badge">🎮 Roblox Studio</span>
+      <span class="badge">🤖 Ollama (nomic-embed-text)</span>
+      <span class="badge blue">🗄️ Qdrant</span>
+      <span class="badge green">🐙 GitHub Pages</span>
+      <span class="badge orange">⚡ Luau / LuaU</span>
+      <span class="badge">🐍 Python</span>
+      <span class="badge blue">🐳 Docker</span>
+      <span class="badge">📖 Markdown</span>
+    </div>
+
+    <!-- Quick links -->
+    <h2>🔗 Quick Links</h2>
+    <ul>
+      <li>📖 <a href="markdown_renderer.html">Markdown Reader</a> — view any <code>.md</code> file in the browser</li>
+      <li>📐 <a href="markdown_renderer.html?file=4_Formula/formula_roblox_versus_sketchup.md">Roblox vs SketchUp Formula</a></li>
+      <li>🗄️ <a href="markdown_renderer.html?file=4_Formula/qdrant_ollama_setup.md">Qdrant + Ollama Setup Guide</a></li>
+      <li>🧠 <a href="markdown_renderer.html?file=aigent.md">Agent Rules (aigent.md)</a></li>
+      <li>🤖 <a href="markdown_renderer.html?file=claude.md">Claude Rules (claude.md)</a></li>
+    </ul>
+
+    <div class="info-box">
+      💡 <strong>Debug Mode:</strong> Add <code>?debug=true</code> to any URL to enable the debug bar,
+      or click <a href="?debug=true">here</a>.
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="social-links">
+        <a href="https://github.com/rifaterdemsahin/memory-palace" target="_blank" rel="noopener" title="GitHub">🐙</a>
+        <a href="https://www.linkedin.com/in/rifaterdemsahin/" target="_blank" rel="noopener" title="LinkedIn">💼</a>
+        <a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" rel="noopener" title="YouTube">🎥</a>
+      </div>
+      <p>🏛️ Memory Palace · Built with ❤️ by <a href="https://www.linkedin.com/in/rifaterdemsahin/" target="_blank" rel="noopener">Rifat Erdem Sahin</a></p>
+      <p style="margin-top:0.3rem;font-size:0.75rem;">
+        <a href="https://github.com/rifaterdemsahin/memory-palace" target="_blank" rel="noopener">github.com/rifaterdemsahin/memory-palace</a>
+      </p>
+    </footer>
+  </main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+</body>
+</html>

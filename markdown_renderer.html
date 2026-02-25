@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📖 Markdown Reader — Memory Palace</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+<div class="page-wrapper">
+  <script>window.SITE_ROOT='./';</script>
+  <script>window.CURRENT_SECTION='md';</script>
+  <script src="assets/menu.js"></script>
+
+  <main class="main-content">
+    <div style="margin-bottom:1rem; display:flex; align-items:center; gap:1rem; flex-wrap:wrap;">
+      <h1 style="margin:0;">📖 Markdown Reader</h1>
+      <div style="flex:1; min-width:200px;">
+        <input id="fileInput" type="text" placeholder="Path to .md file, e.g. 4_Formula/qdrant_ollama_setup.md"
+          style="width:100%;padding:0.5rem 0.8rem;border:2px solid #ce93d8;border-radius:8px;font-size:0.9rem;outline:none;">
+      </div>
+      <button onclick="loadFromInput()"
+        style="background:#4a148c;color:white;border:none;padding:0.55rem 1.2rem;border-radius:8px;cursor:pointer;font-weight:600;">
+        📂 Load
+      </button>
+    </div>
+
+    <div id="breadcrumb" style="font-size:0.82rem;color:#888;margin-bottom:1rem;"></div>
+
+    <!-- Quick links to all markdown files -->
+    <div id="quickLinks">
+      <h2>📂 Available Documents</h2>
+      <div class="card-grid" id="docGrid"></div>
+    </div>
+
+    <article class="md-content" id="mdContent" style="display:none;"></article>
+
+    <footer class="site-footer">
+      <div class="social-links">
+        <a href="https://github.com/rifaterdemsahin/memory-palace" target="_blank" rel="noopener">🐙</a>
+        <a href="https://www.linkedin.com/in/rifaterdemsahin/" target="_blank" rel="noopener">💼</a>
+        <a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" rel="noopener">🎥</a>
+      </div>
+      <p>🏛️ Memory Palace</p>
+    </footer>
+  </main>
+</div>
+
+<!-- marked.js for markdown parsing -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<!-- PrismJS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+<script>
+  const ALL_DOCS = [
+    { label: '❓ OKRs & Goals',               file: '1_Real_Unknown/okrs.md',                     section: '1' },
+    { label: '🌍 Clients Guide',               file: '2_Environment/clients.md',                   section: '2' },
+    { label: '🌍 Roadmap',                     file: '2_Environment/roadmap.md',                   section: '2' },
+    { label: '📐 Roblox vs SketchUp',          file: '4_Formula/formula_roblox_versus_sketchup.md', section: '4' },
+    { label: '📐 Qdrant + Ollama Setup',       file: '4_Formula/qdrant_ollama_setup.md',           section: '4' },
+    { label: '💻 PrismJS Integration',         file: '5_Symbols/prism_integration.md',             section: '5' },
+    { label: '🔍 Error Log',                   file: '6_Semblance/error_log.md',                   section: '6' },
+    { label: '✅ Test Checklist',              file: '7_Testing_Known/test_checklist.md',          section: '7' },
+    { label: '🤖 Agent Rules (aigent.md)',     file: 'aigent.md',                                  section: 'root' },
+    { label: '🧠 Claude Rules',                file: 'claude.md',                                  section: 'root' },
+    { label: '🔧 Kilocode Rules',              file: 'kilocode.md',                                section: 'root' },
+  ];
+
+  const sectionColors = { '1':'#f3e5f5','2':'#e8f5e9','3':'#e3f2fd','4':'#fff3e0','5':'#fce4ec','6':'#efebe9','7':'#e0f2f1','root':'#f5f5f5' };
+  const sectionBorders = { '1':'#ce93d8','2':'#a5d6a7','3':'#90caf9','4':'#ffcc80','5':'#f48fb1','6':'#bcaaa4','7':'#80cbc4','root':'#bdbdbd' };
+
+  function buildDocGrid() {
+    const grid = document.getElementById('docGrid');
+    ALL_DOCS.forEach(doc => {
+      const card = document.createElement('a');
+      card.href = '#';
+      card.className = 'card';
+      card.style.background = sectionColors[doc.section] || '#fff';
+      card.style.borderColor = sectionBorders[doc.section] || '#ddd';
+      card.innerHTML = `<div class="card-title" style="font-size:0.88rem;">${doc.label}</div>
+        <div class="card-desc" style="font-size:0.75rem;margin-top:0.3rem;">${doc.file}</div>`;
+      card.addEventListener('click', e => { e.preventDefault(); loadFile(doc.file); });
+      grid.appendChild(card);
+    });
+  }
+
+  function setTitle(file) {
+    document.title = `📖 ${file} — Memory Palace`;
+    document.getElementById('breadcrumb').innerHTML =
+      `<a href="index.html">🏠 Home</a> › <span>${file}</span>`;
+  }
+
+  async function loadFile(file) {
+    const content = document.getElementById('mdContent');
+    const quickLinks = document.getElementById('quickLinks');
+    content.style.display = 'none';
+    content.innerHTML = '<p style="color:#888;">⏳ Loading...</p>';
+    content.style.display = 'block';
+    quickLinks.style.display = 'none';
+    setTitle(file);
+    document.getElementById('fileInput').value = file;
+    // Update URL without reload
+    const url = new URL(window.location);
+    url.searchParams.set('file', file);
+    window.history.pushState({}, '', url);
+    try {
+      const resp = await fetch(file);
+      if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+      const text = await resp.text();
+      content.innerHTML = marked.parse(text);
+      // Highlight code blocks
+      Prism.highlightAllUnder(content);
+      // Make relative md links open in this renderer
+      content.querySelectorAll('a[href$=".md"]').forEach(a => {
+        const href = a.getAttribute('href');
+        if (!href.startsWith('http')) {
+          // Resolve relative to current file's directory
+          const dir = file.includes('/') ? file.split('/').slice(0,-1).join('/') + '/' : '';
+          a.href = `markdown_renderer.html?file=${dir}${href}`;
+        }
+      });
+    } catch (e) {
+      content.innerHTML = `<div class="info-box warn">⚠️ Could not load <strong>${file}</strong>: ${e.message}</div>
+        <p>Make sure the file exists and GitHub Pages has deployed it.</p>`;
+    }
+  }
+
+  function loadFromInput() {
+    const val = document.getElementById('fileInput').value.trim();
+    if (val) loadFile(val);
+  }
+
+  document.getElementById('fileInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') loadFromInput();
+  });
+
+  // On load, check URL params
+  buildDocGrid();
+  const params = new URLSearchParams(window.location.search);
+  const fileParam = params.get('file');
+  if (fileParam) loadFile(fileParam);
+</script>
+</body>
+</html>
